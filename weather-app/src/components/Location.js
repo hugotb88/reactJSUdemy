@@ -1,12 +1,11 @@
 import React from 'react';
 
 const Location = (props) => {
-    console.log(props);
-    debugger;
-    
+    const city = props.city;
+
     return (
         <div>
-            <h1>Buenos Aires</h1>
+            <h1>{city}</h1>
         </div>
     );
 };
