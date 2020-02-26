@@ -9,6 +9,7 @@ import {
     SNOW,
     WINDY
   }  from './../../../constants/weathers';
+  import './styles.css';
 
 //Dictionary for icons names
 const icons = {
@@ -31,7 +32,7 @@ const getWeatherIcon = weatherState => {
 };
 
 const WeatherTemperature = ({ temperature, weatherState }) => (
-    <div>
+    <div className = "weatherTemperatureCont">
         {
             getWeatherIcon(weatherState)
         }
