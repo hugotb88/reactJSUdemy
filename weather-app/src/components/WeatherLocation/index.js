@@ -42,7 +42,14 @@ class WeatherLocation extends Component {
     }
 
     handleUpdateClick = () => {
-        fetch(api_weather);
+        //Go to the endpoint
+        fetch(api_weather).then( resolve => {
+            return resolve.json(); //Returns a new Promise
+        }).then(data => {
+            console.log(data); //is the resolve.json
+        });
+        
+        
         console.log("Updated");
 
         //For other functions, we should use this.setState({}) instead of this.state={}
