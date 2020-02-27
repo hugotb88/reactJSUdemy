@@ -6,6 +6,12 @@ import {
   }  from './../../constants/weathers';
 import './styles.css';
 
+const location = "Buenos Aires,ar";
+const api_key = "ca828cdbf57dfd6382aeb3f5d266f7dc";
+const url_base_weather= "https://api.openweathermap.org/data/2.5/weather";
+
+const api_weather = `${url_base_weather}?q=${location}&appid=${api_key}`;
+
 const data = {
     temperature: 5,
     weatherState: SUN,
@@ -36,9 +42,10 @@ class WeatherLocation extends Component {
     }
 
     handleUpdateClick = () => {
+        fetch(api_weather);
         console.log("Updated");
 
-        //For other functions, we should use this.setState instead of this.state
+        //For other functions, we should use this.setState({}) instead of this.state={}
         this.setState({
             city: "Mexico City",
             data: data2,
