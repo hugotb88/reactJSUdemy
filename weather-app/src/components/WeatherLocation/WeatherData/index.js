@@ -22,7 +22,7 @@ WeatherData.propTypes = {
         temperature: PropTypes.number.isRequired,
         weatherState: PropTypes.string.isRequired,
         humidity: PropTypes.number.isRequired,
-        wind: PromiseRejectionEvent
+        wind: PropTypes.string.isRequired
     }),
 };
 
