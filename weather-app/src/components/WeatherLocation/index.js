@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import {
-    SUN, WINDY
+    SUN
   }  from './../../constants/weathers';
 import './styles.css';
 
@@ -17,13 +17,6 @@ const data = {
     weatherState: SUN,
     humidity: 25,
     wind: '10 m/s'
-}
-
-const data2 = {
-    temperature: 40,
-    weatherState: WINDY,
-    humidity: 14,
-    wind: '19 m/s'
 }
 
 //Class Component
@@ -41,21 +34,40 @@ class WeatherLocation extends Component {
         };
     }
 
+    //Get the icon, now is only returning SUN
+    getWeatherState = weather_data => {
+        return SUN;
+    }
+
+
+    //Function to transform the data from the server to our component
+    getData = weather_data => {
+        const { humidity, temp } = weather_data.main; //if you check the json of resolve.json, you can see from where came this two 
+        const { speed } = weather_data.wind;
+        const weatherState = this.getWeatherState(weather_data); //Hardcoded by the moment
+
+        const data = {
+            humidity,
+            temperature: temp,
+            wind: `${speed} m/s`,
+            weatherState
+        };
+
+        return data;
+    }
+
     handleUpdateClick = () => {
         //Go to the endpoint
         fetch(api_weather).then( resolve => {
             return resolve.json(); //Returns a new Promise
         }).then(data => {
+            const newWeather = this.getData(data);
             console.log(data); //is the resolve.json
-        });
-        
-        
-        console.log("Updated");
 
-        //For other functions, we should use this.setState({}) instead of this.state={}
-        this.setState({
-            city: "Mexico City",
-            data: data2,
+            //assigns the new values to state of the component
+            this.setState({
+                data: newWeather
+            });
         });
     }
 
