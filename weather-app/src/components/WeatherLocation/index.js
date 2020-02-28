@@ -28,7 +28,27 @@ class WeatherLocation extends Component {
             city: "Buenos Aires",
             data: data,
         };
+
+        console.log("Constructor");
     }
+
+    componentDidMount(){
+        console.log("componentDidMount");
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log("componentDidUpdate");
+    }
+
+    //Will be deprecated
+    componentWillMount(){
+        console.log("UNSAFE componentWillMount");
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        console.log("UNSAFE componentWillUpdate");
+    }
+
 
     handleUpdateClick = () => {
         //Go to the endpoint
@@ -46,6 +66,8 @@ class WeatherLocation extends Component {
     }
 
     render() {
+        console.log("render");
+
         //Using destructuring
         const { city, data } = this.state;
 
