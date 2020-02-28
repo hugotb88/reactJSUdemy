@@ -3,17 +3,6 @@ import transformWeather from './../../services/transformWeather'
 import {api_weather} from './../../constants/api_url'; //We use {} when we donts use export default in the elemt to import, in this case api_url
 import Location from './Location';
 import WeatherData from './WeatherData';
-import {
-    SUN
-  }  from './../../constants/weathers';
-import './styles.css';
-
-const data = {
-    temperature: 5,
-    weatherState: SUN,
-    humidity: 25,
-    wind: '10 m/s'
-}
 
 //Class Component
 class WeatherLocation extends Component {
@@ -26,7 +15,7 @@ class WeatherLocation extends Component {
         //this.state only in constructor
         this.state = {
             city: "Buenos Aires",
-            data: data,
+            data: null,
         };
 
         console.log("Constructor");
@@ -34,19 +23,11 @@ class WeatherLocation extends Component {
 
     componentDidMount(){
         console.log("componentDidMount");
+        this.handleUpdateClick();
     }
 
     componentDidUpdate(prevProps, prevState){
         console.log("componentDidUpdate");
-    }
-
-    //Will be deprecated
-    componentWillMount(){
-        console.log("UNSAFE componentWillMount");
-    }
-
-    componentWillUpdate(nextProps, nextState){
-        console.log("UNSAFE componentWillUpdate");
     }
 
 
@@ -74,7 +55,7 @@ class WeatherLocation extends Component {
         return (
             <div className= "weatherLocationCont">
                 <Location city={city}></Location>
-                <WeatherData data={data}></WeatherData>
+                {data ? <WeatherData data={data}></WeatherData> : "Loading..."}
                 <button onClick={this.handleUpdateClick}>Actualizar</button>
             </div>
         );
